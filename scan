@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 #This code will let you scan for PC's on other subnets.
 
 start=0		#This is the first subnet it will scan for.
@@ -7,7 +8,7 @@ ip=84	#Any Random number from 0-255 (make sure not to chose your router)
 fix=192.168.
 gateway=$start
 
-interface=wlan0
+interface=wlan0	#Name of your interface.
 
 mkdir Scan_Result;
 
@@ -25,7 +26,7 @@ else
 	sudo apt -y install net-tools;
 fi
 
-sudo ifconfig $interface 255.255.0.0;
+sudo ifconfig $interface `/sbin/ifconfig $interface | grep "inet addr" | tr -s " " | cut -f 3 -d " " | cut -f 2 -d ":"` netmask 255.255.0.0
 
 while [ $gateway -le $last ]
 do
