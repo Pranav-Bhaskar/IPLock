@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+echo "Run this command as sudo.";
+sudo cp scan /usr/bin/;
+sudo chmod 755 /usr/bin/scan;
+echo "Done";
